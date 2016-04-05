@@ -5,7 +5,7 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     @courses = Course.all
-      @course_reviews = Review.for_class(params[@course.id]).all
+      @course_reviews = Review.for_class(params[self]).all
   end
 
   # GET /courses/1
