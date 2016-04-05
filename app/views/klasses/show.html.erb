@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @klass.year %>
+</p>
+
+<p>
+  <strong>Enrollment size:</strong>
+  <%= @klass.enrollment_size %>
+</p>
+
+<%= link_to 'Edit', edit_klass_path(@klass) %> |
+<%= link_to 'Back', klasses_path %>

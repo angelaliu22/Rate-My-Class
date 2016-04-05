@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @professorship.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @professorship.end_date %>
+</p>
+
+<%= link_to 'Edit', edit_professorship_path(@professorship) %> |
+<%= link_to 'Back', professorships_path %>
