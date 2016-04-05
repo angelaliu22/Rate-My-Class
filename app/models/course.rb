@@ -14,7 +14,14 @@ class Course < ActiveRecord::Base
     scope :for_units,     -> (num_units) { where(units: num_units )}
     
     #Validations
+    validates :name, presence: true, uniqueness: { case_sensitive: false }
+    validates_numericality_of :units, only_integer: true, greater_than: 0
+    
     validates_inclusion_of :semester, in: SEMESTERS.map{|key, value| value}, message: "is not an option"
+    
+    validates_date :start_date
+    validates_date :end_date, :on_or_after => :start_date
+    
     
     #Methods
     def filter_by_keyword(keyword)

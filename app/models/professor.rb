@@ -9,6 +9,7 @@ class Professor < ActiveRecord::Base
     
     #Validations
     
+    
     #Methods
     
     def name

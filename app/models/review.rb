@@ -26,6 +26,11 @@ class Review < ActiveRecord::Base
 
     
     #Validations
+    validates_date :date
+    validates :overall_rating, presence: true
+    validates :helpfulness_rating, presence: true
+    validates :workload_rating, presence: true
+    validates :professor_rating, presence: true
     
     #Methods
     
