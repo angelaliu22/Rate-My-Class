@@ -1,6 +1,6 @@
-class CreateEducations < ActiveRecord::Migration
+class CreateEnrollments < ActiveRecord::Migration
   def change
-    create_table :educations do |t|
+    create_table :enrollments do |t|
       t.date :start_date
       t.date :end_date
 

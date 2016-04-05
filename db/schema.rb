@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405000654) do
+ActiveRecord::Schema.define(version: 20160405031134) do
 
   create_table "courses", force: :cascade do |t|
     t.date     "start_date"
@@ -21,9 +21,10 @@ ActiveRecord::Schema.define(version: 20160405000654) do
     t.decimal  "units"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "number"
   end
 
-  create_table "educations", force: :cascade do |t|
+  create_table "enrollments", force: :cascade do |t|
     t.date     "start_date"
     t.date     "end_date"
     t.datetime "created_at", null: false
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(version: 20160405000654) do
     t.decimal  "enrollment_size"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "semester"
   end
 
   create_table "professors", force: :cascade do |t|
@@ -63,8 +65,12 @@ ActiveRecord::Schema.define(version: 20160405000654) do
 
   create_table "reviews", force: :cascade do |t|
     t.datetime "date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "overall_rating",     default: 0
+    t.integer  "helpfulness_rating", default: 0
+    t.integer  "workload_rating",    default: 0
+    t.integer  "professor_rating",   default: 0
   end
 
   create_table "schools", force: :cascade do |t|

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :enrollments
+  resources :enrollments
   resources :reviews
   resources :reviewers
   resources :educations
