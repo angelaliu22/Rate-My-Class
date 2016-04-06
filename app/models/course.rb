@@ -6,6 +6,7 @@ class Course < ActiveRecord::Base
     #Relationships
     has_one :schools
     has_many :klasses
+    belongs_to :schools
     
     #Scopes
     scope :alphabetical,  -> { order(:last_name).order(:first_name) }

@@ -3,6 +3,8 @@ class Klass < ActiveRecord::Base
     #Relationships
     has_one :professors
     has_one :courses
+    belongs_to :courses
+    belongs_to :professors
     
     #Scopes
     scope :chronological,  -> { order(:year) }

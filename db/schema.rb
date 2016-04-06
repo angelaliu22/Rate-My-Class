@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405031134) do
+ActiveRecord::Schema.define(version: 20160406032351) do
 
   create_table "courses", force: :cascade do |t|
     t.date     "start_date"
@@ -22,13 +22,16 @@ ActiveRecord::Schema.define(version: 20160405031134) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "number"
+    t.integer  "school_id"
   end
 
   create_table "enrollments", force: :cascade do |t|
     t.date     "start_date"
     t.date     "end_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "reviewer_id"
+    t.integer  "school_id"
   end
 
   create_table "klasses", force: :cascade do |t|
@@ -37,6 +40,8 @@ ActiveRecord::Schema.define(version: 20160405031134) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "semester"
+    t.integer  "course_id"
+    t.integer  "professor_id"
   end
 
   create_table "professors", force: :cascade do |t|
@@ -50,8 +55,10 @@ ActiveRecord::Schema.define(version: 20160405031134) do
   create_table "professorships", force: :cascade do |t|
     t.date     "start_date"
     t.date     "end_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "professor_id"
+    t.integer  "school_id"
   end
 
   create_table "reviewers", force: :cascade do |t|
@@ -67,10 +74,12 @@ ActiveRecord::Schema.define(version: 20160405031134) do
     t.datetime "date"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.integer  "overall_rating",     default: 0
-    t.integer  "helpfulness_rating", default: 0
-    t.integer  "workload_rating",    default: 0
-    t.integer  "professor_rating",   default: 0
+    t.integer  "overall_rating"
+    t.integer  "helpfulness_rating"
+    t.integer  "workload_rating"
+    t.integer  "professor_rating"
+    t.integer  "reviewer_id"
+    t.integer  "klass_id"
   end
 
   create_table "schools", force: :cascade do |t|

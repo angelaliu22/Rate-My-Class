@@ -3,6 +3,8 @@ class Professorship < ActiveRecord::Base
     #Relationships
     has_one :professors
     has_one :schools
+    belongs_to :professors
+    belongs_to :schools
     
     #Scopes
     scope :active,        -> { where(end_date: nil) }
