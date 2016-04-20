@@ -5,7 +5,7 @@ module Contexts
         @prof1_professorship1   = FactoryGirl.create(:professorship, 
             professor: @prof1, 
             school: @school1,
-            start_date: 10.days.ago.to_date, 
+            start_date: 10.months.ago.to_date, 
             end_date: nil)
         @prof1_professorship2   = FactoryGirl.create(:professorship, 
             professor: @prof1, 
@@ -15,7 +15,7 @@ module Contexts
         @prof2_professorship1   = FactoryGirl.create(:professorship, 
             professor: @prof2, 
             school: @school3,
-            start_date: 10.days.ago.to_date, 
+            start_date: 13.days.ago.to_date, 
             end_date: nil)
         @prof2_professorship2   = FactoryGirl.create(:professorship, 
             professor: @prof2, 

@@ -1,10 +1,11 @@
 class Review < ActiveRecord::Base
     
     #Relationships
-    has_one :klasses
-    has_one :reviewers
-    belongs_to :reviewers
-    belongs_to :klasses
+    has_one :klass
+    has_one :reviewer
+    belongs_to :reviewer
+    belongs_to :klass
+    has_one :course through :klass
     
     #5 is the best
     enum overall_rating: [:overall_five, :overall_four, :overall_three, :overall_two, :overall_one]
@@ -18,9 +19,7 @@ class Review < ActiveRecord::Base
     
     #Scopes
     scope :chronological,       -> { order(:date)}
-    scope :for_class,           -> (class_id) {where(class_id: class_id)}
-    scope :for_class_name,      -> (class_name) { where(name: class_name)}
-    scope :for_class_num,      -> (class_num) { where(number: class_num)}
+    scope :for_class,           -> (klass_id) {where(klass_id: klass_id)}
 
     
     #Validations

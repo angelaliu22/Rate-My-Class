@@ -4,9 +4,10 @@ class Course < ActiveRecord::Base
     SEMESTERS = [['Fall','fall'],['Spring','spring'],['Summer','summer']]
     
     #Relationships
-    has_one :schools
+    has_one :school #TODO: FIX ALL THE SINGULARS
     has_many :klasses
-    belongs_to :schools
+    belongs_to :school
+    has_many :reviews through :klasses
     
     #Scopes
     scope :alphabetical,  -> { order(:last_name).order(:first_name) }
@@ -26,7 +27,6 @@ class Course < ActiveRecord::Base
     
     #Methods
     def filter_by_keyword(keyword)
-        @keyword = keyword
         Course.where("name like ?", "%#{keyword}%")
     end
     
@@ -36,41 +36,41 @@ class Course < ActiveRecord::Base
         self.joins(:klasses).where(year: year).where(semester: semester).uniq!
     end
     
-    def average_overall_rating
-        sum = 0
-        count = 0
+    def average_overall_rating 
+        sum = 0.0
+        count = 0.0
         Course.course_reviews.each do |review|
-            sum += Review.overall_ratings[review.overall_rating]
+            sum += Review.overall_ratings[review.overall_rating].to_f
             count += 1
         end
         average = sum / count
     end
     
     def average_helpfulness_rating
-        sum = 0
-        count = 0
+        sum = 0.0
+        count = 0.0
         Course.course_reviews.each do |review|
-            sum += Review.helpfulness_ratings[review.helpfulness_rating]
+            sum += Review.helpfulness_ratings[review.helpfulness_rating].to_f
             count += 1
         end
         average = sum / count
     end
     
     def average_workload_rating
-        sum = 0
-        count = 0
+        sum = 0.0
+        count = 0.0
         Course.course_reviews.each do |review|
-            sum += Review.workload_ratings[review.workload_rating]
+            sum += Review.workload_ratings[review.workload_rating].to_f
             count += 1
         end
         average = sum / count
     end
     
     def average_professor_rating
-        sum = 0
-        count = 0
+        sum = 0.0
+        count = 0.0
         Course.course_reviews.each do |review|
-            sum += Review.professor_ratings[review.professor_rating]
+            sum += Review.professor_ratings[review.professor_rating].to_f
             count += 1
         end
         average = sum / count

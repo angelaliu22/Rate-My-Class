@@ -7,6 +7,7 @@ class Reviewer < ActiveRecord::Base
     #Scopes
     
     #Validations
+    validates :password, presence: true
     validates :username, presence: true, uniqueness: { case_sensitive: false }
     validates_numericality_of :year, only_integer: true, greater_than: 0
     

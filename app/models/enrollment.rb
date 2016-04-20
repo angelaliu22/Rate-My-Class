@@ -1,10 +1,10 @@
 class Enrollment < ActiveRecord::Base
     
     #Relationships
-    has_one :schools
-    has_one :reviewers
-    belongs_to :reviewers
-    belongs_to :schools
+    has_one :school
+    has_one :reviewer
+    belongs_to :reviewer
+    belongs_to :school
     
     #Scopes
     scope :active,        -> { where(end_date: nil) }

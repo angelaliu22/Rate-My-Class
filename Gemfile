@@ -29,6 +29,21 @@ gem 'validates_timeliness', '~> 4.0'
 #simplecov testing gem
 gem 'simplecov', :require => false, :group => :test
 
+#faker gem to populate database
+gem 'faker'
+
+#factory girl to create dummy items
+gem 'factory_girl'
+
+#shoulda matchers for testing
+gem 'shoulda-matchers'
+
+#format test results
+gem 'minitest'
+
+#for search functionality
+gem 'pg_search'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

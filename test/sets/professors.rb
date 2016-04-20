@@ -15,7 +15,7 @@ module Contexts
             last_name: "Mantle", 
             department: "Photography")
         @prof4   = FactoryGirl.create(:professor, 
-            first_name: "Dave", 
+            first_name: "David", 
             last_name: "Tepper", 
             department: "Business")
       
