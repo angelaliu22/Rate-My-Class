@@ -2,8 +2,6 @@ require 'test_helper'
 
 class KlassTest < ActiveSupport::TestCase
       #Test Relationships    
-    should have_one(:professor)
-    should have_one(:course)
     should belong_to(:professor)
     should belong_to(:course)
     

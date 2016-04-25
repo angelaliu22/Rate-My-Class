@@ -1,28 +1,20 @@
 class KlassesController < ApplicationController
   before_action :set_klass, only: [:show, :edit, :update, :destroy]
 
-  # GET /klasses
-  # GET /klasses.json
   def index
     @klasses = Klass.all
   end
 
-  # GET /klasses/1
-  # GET /klasses/1.json
   def show
   end
 
-  # GET /klasses/new
   def new
     @klass = Klass.new
   end
 
-  # GET /klasses/1/edit
   def edit
   end
 
-  # POST /klasses
-  # POST /klasses.json
   def create
     @klass = Klass.new(klass_params)
 
@@ -37,8 +29,6 @@ class KlassesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /klasses/1
-  # PATCH/PUT /klasses/1.json
   def update
     respond_to do |format|
       if @klass.update(klass_params)
@@ -51,8 +41,6 @@ class KlassesController < ApplicationController
     end
   end
 
-  # DELETE /klasses/1
-  # DELETE /klasses/1.json
   def destroy
     @klass.destroy
     respond_to do |format|
@@ -69,6 +57,7 @@ class KlassesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def klass_params
-      params.require(:klass).permit(:year, :enrollment_size)
+        params.require(:klass).permit(:year, :semester)
     end
+    
 end

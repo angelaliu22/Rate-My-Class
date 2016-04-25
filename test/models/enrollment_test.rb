@@ -2,7 +2,6 @@ require 'test_helper'
 
 class EnrollmentTest < ActiveSupport::TestCase
   #Test Relationships    
-    should have_one(:school)
     should have_many(:reviewer)
     should belong_to(:school)
     should have_many(:reviewer)

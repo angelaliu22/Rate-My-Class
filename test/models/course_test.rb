@@ -2,7 +2,6 @@ require 'test_helper'
 
 class CourseTest < ActiveSupport::TestCase
     #Test Relationships    
-    should have_one(:school)
     should have_many(:klasses)
     should belong_to(:school)
     should have_many(:reviews).through(:klasses)

@@ -16,6 +16,7 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
     @course = Course.new
+      @klass = Klass.new
   end
 
   # GET /courses/1/edit
@@ -26,16 +27,21 @@ class CoursesController < ApplicationController
   # POST /courses.json
   def create
     @course = Course.new(course_params)
-
+      
     respond_to do |format|
       if @course.save
+          
+          @klass = Klass.create( params[:course][:klasses_attributes])
+          @klass.course_id = @course.id
+        @klass.save 
+
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
-        format.json { render :show, status: :created, location: @course }
+        format.json { render :show, status: :created, location: @course } 
       else
         format.html { render :new }
         format.json { render json: @course.errors, status: :unprocessable_entity }
       end
-    end
+    end     
   end
 
   # PATCH/PUT /courses/1
@@ -70,6 +76,6 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:start_date, :end_date, :name, :description, :units)
+        params.require(:course).permit(:start_date, :end_date, :name, :description, :units, :number, klasses_attributes: [:id, :year, :semester])        
     end
 end

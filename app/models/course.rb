@@ -1,23 +1,25 @@
 class Course < ActiveRecord::Base
     
     #Relationships
-    has_one :school #TODO: FIX ALL THE SINGULARS
     has_many :klasses
     belongs_to :school
-    has_many :reviews through :klasses
+    has_many :reviews, through: :klasses
+    
+    accepts_nested_attributes_for :klasses, reject_if: ->(klass) { course[:semester].blank? }, allow_destroy: true
     
     #Scopes
     scope :alphabetical,  -> { order(:last_name).order(:first_name) }
     scope :active,        -> { where(end_date: nil) }
     scope :inactive,      -> { where.not(end_date: nil) }
     scope :for_units,     -> (num_units) { where(units: num_units )}
+
     
     #Validations
     validates :name, presence: true, uniqueness: { case_sensitive: false }
     validates_numericality_of :units, only_integer: true, greater_than: 0
-        
-    validates_date :start_date
-    validates_date :end_date, :on_or_after => :start_date
+#        
+#    validates_date :start_date
+#    validates_date :end_date, :on_or_after => :start_date
     
     
     #Methods

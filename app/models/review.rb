@@ -1,11 +1,9 @@
 class Review < ActiveRecord::Base
     
     #Relationships
-    has_one :klass
-    has_one :reviewer
     belongs_to :reviewer
     belongs_to :klass
-    has_one :course through :klass
+    has_one :course, through: :klass
     
     #5 is the best
     enum overall_rating: [:overall_five, :overall_four, :overall_three, :overall_two, :overall_one]

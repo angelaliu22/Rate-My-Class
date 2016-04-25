@@ -1,8 +1,6 @@
 class Professorship < ActiveRecord::Base
     
     #Relationships
-    has_one :professor
-    has_one :school
     belongs_to :professor
     belongs_to :school
     

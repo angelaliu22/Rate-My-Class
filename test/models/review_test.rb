@@ -2,8 +2,6 @@ require 'test_helper'
 
 class ReviewTest < ActiveSupport::TestCase
   #Test Relationships    
-    should have_one(:klass)
-    should have_one(:reviewer)
     should belong_to(:reviewer)
     should belong_to(:klass)
     should have_one(:course).through(:klass)

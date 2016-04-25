@@ -1,8 +1,6 @@
 class Enrollment < ActiveRecord::Base
     
     #Relationships
-    has_one :school
-    has_one :reviewer
     belongs_to :reviewer
     belongs_to :school
     

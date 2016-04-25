@@ -1,0 +1,8 @@
+
+<div class="field">    
+    <%= f.input :semester, collection: Klass::SEMESTERS, include_blank: true, input_html: {class: "avg"} %>
+</div>
+  <div class="field">
+    <%= f.label :year %><br>
+      <%= f.number_field :year %>
+  </div>
