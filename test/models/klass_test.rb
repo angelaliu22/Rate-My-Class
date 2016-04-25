@@ -10,6 +10,8 @@ class KlassTest < ActiveSupport::TestCase
     #Test Validations with matchers
     should validate_numericality_of(:year).only_integer.is_greater_than(0)
     should validate_numericality_of(:enrollment_size).only_integer.is_greater_than(0)
+    
+    validate_inclusion_of(:semester).in_array(Course::SEMESTERS.to_h.values)
 
 
     #Test Validations with values

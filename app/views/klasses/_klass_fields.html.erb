@@ -1,0 +1,13 @@
+<div class="field">
+    <%= f.label :semester %><br>
+    <%= f.input :semester, collection: Klass::SEMESTERS, include_blank: true, input_html: {class: "avg"} %>
+</div>
+  <div class="field">
+    <%= f.label :year %><br>
+    <%= f.text_field :year %>
+  </div>
+
+  <div class="field">
+    <%= f.label :enrollment_size %><br>
+    <%= f.text_field :enrollment_size %>
+  </div>

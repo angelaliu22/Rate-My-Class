@@ -11,7 +11,7 @@ class CourseTest < ActiveSupport::TestCase
     should validate_presence_of(:name)
     should validate_uniqueness_of(:name).case_insensitive
     should validate_numericality_of(:units).only_integer.is_greater_than(0)
-    should validate_inclusion_of(:semester).in_array(Course::SEMESTERS.to_h.values)
+    should
 
     #Test Validations with values
     should allow_value(10.days.ago).for(:start_date)

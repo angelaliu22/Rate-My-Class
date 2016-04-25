@@ -1,5 +1,5 @@
-<%= form_for(@klass) do |f| %>
-  <% if @klass.errors.any? %>
+<%= simple_nested_form_for @klass, :html => { :class => 'form-horizontal' } do |klass_form| %>
+    <% if @klass.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@klass.errors.count, "error") %> prohibited this klass from being saved:</h2>
 
@@ -10,16 +10,20 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :year %><br>
-    <%= f.text_field :year %>
-  </div>
-  <div class="field">
-    <%= f.label :enrollment_size %><br>
-    <%= f.text_field :enrollment_size %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+    <div class="row">
+      <div class="span7">
+        <fieldset>
+            <%= render :partial => "klass_fields", :locals => { :f => klass_form } %>
+        <div>
+            <%= klass_form.simple_fields_for :course do |course_form| %>
+            <%= render :partial => "course_fields", :locals => { :f => course_form } %>
+              <% end %> 
+        </fieldset>
+        </div> 
+      </div>
+    </div>
+    <div class="form-actions">
+        <%= klass_form.submit nil, :class => 'btn submit radius' %>
+        <%= link_to 'Cancel', home_path, :class => 'button secondary' %>
+    </div>
+  <% end %>

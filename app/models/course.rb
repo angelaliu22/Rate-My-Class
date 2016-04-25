@@ -1,8 +1,5 @@
 class Course < ActiveRecord::Base
     
-    # List of allowable semesters
-    SEMESTERS = [['Fall','fall'],['Spring','spring'],['Summer','summer']]
-    
     #Relationships
     has_one :school #TODO: FIX ALL THE SINGULARS
     has_many :klasses
@@ -18,9 +15,7 @@ class Course < ActiveRecord::Base
     #Validations
     validates :name, presence: true, uniqueness: { case_sensitive: false }
     validates_numericality_of :units, only_integer: true, greater_than: 0
-    
-    validates_inclusion_of :semester, in: SEMESTERS.map{|key, value| value}, message: "is not an option"
-    
+        
     validates_date :start_date
     validates_date :end_date, :on_or_after => :start_date
     

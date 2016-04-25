@@ -44,6 +44,15 @@ gem 'minitest'
 #for search functionality
 gem 'pg_search'
 
+#simple form
+gem 'simple_form'
+
+#nested form
+gem "nested_form"
+
+#cancan authorization
+gem "cancan"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
