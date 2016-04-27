@@ -1,19 +1,18 @@
 class Review < ActiveRecord::Base
     
+    #List of ratings
+    OVERALL_RATING = [[1, "Horrible"], [2, "Bad"], [3, "Neutral"], [4, "Good"], [5, "Fantastic"]]
+    
+    HELPFULNESS_RATING = [[1, "Not useful"], [2, "Sort of useful"], [3, "Neutral"], [4, "Useful"], [5, "Very useful"]]
+    
+    WORKLOAD_RATING = [[1, "Barely any time"], [2, "A few hours a week"], [3, "Average"], [4, "A lot of time"], [5, "All my time"]]
+    
+    PROFESSOR_RATING = [[1, "Horrible"], [2, "Bad"], [3, "Neutral"], [4, "Good"], [5, "Fantastic"]]
+    
     #Relationships
     belongs_to :reviewer
     belongs_to :klass
     has_one :course, through: :klass
-    
-    #5 is the best
-    enum overall_rating: [:overall_five, :overall_four, :overall_three, :overall_two, :overall_one]
-    #5 is the most helpful
-    enum helpfulness_rating: [:helpfulness_five, :helpfulness_four, :helpfulness_three, :helpfulness_two, :helpfulness_one]
-    #5 is the most work
-    enum workload_rating: [:workload_five, :workload_four, :workload_three, :workload_two, :workload_one]
-     #5 is the best
-    enum professor_rating: [:professor_five, :professor_four, :professor_three, :professor_two, :professor_one]
-    
     
     #Scopes
     scope :chronological,       -> { order(:date)}
@@ -22,10 +21,13 @@ class Review < ActiveRecord::Base
     
     #Validations
     validates_date :date
-    validates :overall_rating, presence: true
-    validates :helpfulness_rating, presence: true
-    validates :workload_rating, presence: true
-    validates :professor_rating, presence: true
+    validates_inclusion_of :overall_rating, in: OVERALL_RATING.map{|key, value| value}, message: "is not an option"
+    
+    validates_inclusion_of :helpfulness_rating, in: HELPFULNESS_RATING.map{|key, value| value}, message: "is not an option"
+    
+    validates_inclusion_of :workload_rating, in: WORKLOAD_RATING.map{|key, value| value}, message: "is not an option"
+    
+    validates_inclusion_of :professor_rating, in: PROFESSOR_RATING.map{|key, value| value}, message: "is not an option"
     
     #Methods
     

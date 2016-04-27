@@ -16,7 +16,6 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
     @course = Course.new
-      @klass = Klass.new
   end
 
   # GET /courses/1/edit
@@ -31,7 +30,7 @@ class CoursesController < ApplicationController
     respond_to do |format|
       if @course.save
           
-          @klass = Klass.create( params[:course][:klasses_attributes])
+          @klass = Klass.new( params[:course][:klasses_attributes])
           @klass.course_id = @course.id
         @klass.save 
 

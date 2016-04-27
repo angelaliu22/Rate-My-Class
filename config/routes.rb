@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   root :to => 'home#home'  
   
   # Named routes
+    get 'add_review/:id' => 'reviews#add_review', as: :add_review
 
 
   

@@ -1,8 +1,7 @@
-<%= form_for(@review) do |f| %>
+<%= simple_nested_form_for @review, :html => { :class => 'form-horizontal' } do |review_form| %>
   <% if @review.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
-
       <ul>
       <% @review.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -11,11 +10,27 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :date %><br>
-    <%= f.datetime_select :date %>
-  </div>
-  <div class="actions">
+    <%= f.date_select :date, { :discard_day => true, :discard_month => true, :discard_year => true } %>
+
+    <div class="field">
+        <%= f.label :overall_rating %><br>
+        <%=f.collection_radio_buttons :overall_rating, Review::OVERALL_RATING, :first, :last, { item_wrapper_tag: false } do |b| b.radio_button + b.label(:class => "collection_radio_buttons icon-star") end %><br><br>
+    </div>
+    <div class="field">
+        <%= f.label :helpfulness_rating %><br>
+        <%=f.collection_radio_buttons :helpfulness_rating, Review::HELPFULNESS_RATING, :first, :last, { item_wrapper_tag: false } do |b| b.radio_button + b.label(:class => "collection_radio_buttons icon-star") end %><br><br>
+    </div>
+    <div class="field">
+        <%= f.label :workload_rating %><br>
+        <%=f.collection_radio_buttons :workload_rating, Review::WORKLOAD_RATING, :first, :last, { item_wrapper_tag: false } do |b| b.radio_button + b.label(:class => "collection_radio_buttons icon-star") end %><br><br>
+    </div>
+    <div class="field">
+        <%= f.label :professor_rating %><br>
+        <%=f.collection_radio_buttons :professor_rating, Review::PROFESSOR_RATING, :first, :last, { item_wrapper_tag: false } do |b| b.radio_button + b.label(:class => "collection_radio_buttons icon-star") end %><br><br>
+    </div>
+   
+
+<div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
